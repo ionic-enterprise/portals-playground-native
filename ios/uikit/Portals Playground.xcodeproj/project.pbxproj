@@ -115,6 +115,7 @@
 				07A5E833294A26B20048EE1A /* Sources */,
 				07A5E834294A26B20048EE1A /* Frameworks */,
 				07A5E835294A26B20048EE1A /* Resources */,
+				07A5E856294A500C0048EE1A /* [Ionic Portals] Copy Web Apps */,
 				7624BF817C50F09A26F528BA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -173,6 +174,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		07A5E856294A500C0048EE1A /* [Ionic Portals] Copy Web Apps */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Ionic Portals] Copy Web Apps";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eo pipefail\n# Set to the web package you want to bundle.\n# This must point to the distribution folder (e.g, 'www' or 'build')\nAPP_NAME=\"ionic-angular/www\"\n# APP_NAME = \"ionic-react/build\"\n# APP_NAME = \"ionic-vue\"\n\n# Embedded directory path\nEMBEDDED_DIR=\"${BUILT_PRODUCTS_DIR}/${TARGET_NAME}.app/portals\"\n\n# Portal name. This is the value to supply to the \"name\" input parameter.\nPORTAL_NAME=\"playground\"\n\n# Start embedding process\nEMBEDDED_APP=\"${SRCROOT}/../../web/${APP_NAME}\"\n\nmkdir -p \"${EMBEDDED_DIR}\"\necho \"I MADE ${EMBEDDED_DIR}\"\necho \"${PORTAL_NAME} ${EMBEDDED_APP}\"\n\nif [ -d \"${EMBEDDED_DIR}/${PORTAL_NAME}\" ]\nthen \n  cd \"${EMBEDDED_DIR}\"\n  rm -r \"${PORTAL_NAME}\"\nfi\n\nmkdir \"${EMBEDDED_DIR}/${PORTAL_NAME}\"\n\nZIP_FILE=\"${PORTAL_NAME}.zip\"\n\nif [ -d \"${EMBEDDED_APP}\" ] \nthen\n  cd \"${EMBEDDED_APP}\"\n  zip -vr \"${ZIP_FILE}\" * -x \"*.DS_Store\"\n  unzip \"${ZIP_FILE}\" -d \"${EMBEDDED_DIR}/${PORTAL_NAME}\"\n  rm \"${ZIP_FILE}\"\nelse\n  echo \"App ${PORTAL_NAME} has not been built! ${EMBEDDED_APP}\"\n  exit 999\nfi\n# End embedding process\n";
+		};
 		7624BF817C50F09A26F528BA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

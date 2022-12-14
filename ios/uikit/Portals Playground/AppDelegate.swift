@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import IonicPortals
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     if let portalsAPIKey = Bundle.main.infoDictionary?["PORTALS_API_KEY"] as? String {
-      print(portalsAPIKey)
+      PortalsRegistrationManager.shared.register(key: portalsAPIKey)
     }
     return true
   }
