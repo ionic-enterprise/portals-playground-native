@@ -1,0 +1,225 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name IonicLiveUpdates
+import CryptoKit
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+public struct Channel : Swift.Codable {
+  public let id: Swift.String
+  public var currentSnapshot: IonicLiveUpdates.Snapshot?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension IonicLiveUpdates.Channel : Swift.Equatable {
+  public static func == (lhs: IonicLiveUpdates.Channel, rhs: IonicLiveUpdates.Channel) -> Swift.Bool
+}
+extension IonicLiveUpdates.Channel : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct IonWebApp : Swift.Codable, Swift.Equatable {
+  public let id: Swift.String
+  public var channels: Swift.Set<IonicLiveUpdates.Channel>
+  public var snapshots: Swift.Set<IonicLiveUpdates.Snapshot>
+  public var lastSync: Foundation.Date?
+  public func getChannel(_ id: Swift.String) -> IonicLiveUpdates.Channel?
+  public static func == (a: IonicLiveUpdates.IonWebApp, b: IonicLiveUpdates.IonWebApp) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CheckRequest : Swift.Codable {
+  public let device: IonicLiveUpdates.Device
+  public let appId: Swift.String
+  public let channelName: Swift.String
+  public var pluginVersion: Swift.String
+  public var manifest: Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Details : Swift.Codable {
+  public let parameter: Swift.String
+  public let errorType: Swift.String
+  public let errors: [Swift.String]
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Device : Swift.Codable {
+  public var platform: Swift.String
+  public var platformVersion: Swift.String
+  public let binaryVersion: Swift.String
+  public let deviceId: Swift.String
+  public var snapshot: Swift.String?
+  public var build: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct ErrorResponse : Swift.Codable, Swift.Error {
+  public let error: IonicLiveUpdates.LiveUpdateError
+  public let meta: IonicLiveUpdates.Meta
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct IonData : Swift.Codable {
+  public let url: Swift.String?
+  public let available: Swift.Bool
+  public let snapshot: Swift.String?
+  public let partial: Swift.Bool
+  public let build: Swift.Int?
+  public let compatible: Swift.Bool
+  public let incompatibleUpdateAvailable: Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct LiveUpdateError : Swift.Codable {
+  public let link: Swift.String?
+  public let message: Swift.String
+  public let type: Swift.String
+  public let details: [IonicLiveUpdates.Details]?
+  public let eventId: Swift.String
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Meta : Swift.Codable {
+  public let status: Swift.Int
+  public let requestId: Swift.String?
+  public let version: Swift.String
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct SuccessResponse : Swift.Codable {
+  public let data: IonicLiveUpdates.IonData
+  public let meta: IonicLiveUpdates.Meta
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Snapshot : Swift.Codable {
+  public let id: Swift.String
+  public let buildId: Swift.String
+  public var binaryVersion: Swift.String
+  public var lastUsed: Foundation.Date
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension IonicLiveUpdates.Snapshot : Swift.Equatable {
+  public static func == (lhs: IonicLiveUpdates.Snapshot, rhs: IonicLiveUpdates.Snapshot) -> Swift.Bool
+}
+extension IonicLiveUpdates.Snapshot : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct LiveUpdate : Swift.Codable, Swift.Equatable {
+  public let appId: Swift.String
+  public let channel: Swift.String
+  public let syncOnAdd: Swift.Bool
+  public init(appId: Swift.String, channel: Swift.String, syncOnAdd: Swift.Bool = true)
+  public static func == (a: IonicLiveUpdates.LiveUpdate, b: IonicLiveUpdates.LiveUpdate) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension IonicLiveUpdates.LiveUpdateManager {
+  public struct Error : Swift.Error {
+    public var appId: Swift.String
+    public var failStep: IonicLiveUpdates.LiveUpdateManager.Error.FailStep
+    public var reason: IonicLiveUpdates.LiveUpdateManager.Error.Reason
+    public enum FailStep : Swift.String {
+      case check, download, unpack, update
+      public init?(rawValue: Swift.String)
+      public typealias RawValue = Swift.String
+      public var rawValue: Swift.String {
+        get
+      }
+    }
+    public enum Reason {
+      case unknownNetworkError(Foundation.HTTPURLResponse)
+      case appflowError(IonicLiveUpdates.ErrorResponse)
+      case fileIOError(reason: Swift.String)
+      case metadataError(reason: Swift.String)
+      case secureUpdateError(reason: IonicLiveUpdates.SecureUpdateFailureReason)
+    }
+  }
+}
+extension IonicLiveUpdates.LiveUpdateManager.Error : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension IonicLiveUpdates.LiveUpdateManager {
+  public func add(_ liveUpdates: [IonicLiveUpdates.LiveUpdate]) throws
+  public func lastSync(for liveUpdate: IonicLiveUpdates.LiveUpdate) -> Foundation.Date?
+  public func cleanStaleVersions(for liveUpdate: IonicLiveUpdates.LiveUpdate)
+  public func cleanVersions(for liveUpdate: IonicLiveUpdates.LiveUpdate)
+  public func latestAppDirectory(for liveUpdate: IonicLiveUpdates.LiveUpdate) throws -> Foundation.URL?
+  public func sync(liveUpdate: IonicLiveUpdates.LiveUpdate, isParallel: Swift.Bool = true, appComplete: @escaping IonicLiveUpdates.UpdateAppComplete = { _ in })
+  public func sync(liveUpdates: [IonicLiveUpdates.LiveUpdate], isParallel: Swift.Bool = true, syncComplete: @escaping IonicLiveUpdates.UpdateSyncComplete = { }, appComplete: @escaping IonicLiveUpdates.UpdateAppComplete = { _ in })
+}
+public typealias UpdateSyncComplete = () -> Swift.Void
+public typealias UpdateAppComplete = (Swift.Result<IonicLiveUpdates.LiveUpdate, IonicLiveUpdates.LiveUpdateManager.Error>) -> Swift.Void
+@_hasMissingDesignatedInitializers public class LiveUpdateManager {
+  public static let shared: IonicLiveUpdates.LiveUpdateManager
+  convenience public init(named name: Swift.String, maxVersions: Swift.Int = 3)
+  public static let liveUpdatesDirectoryName: Swift.String
+  public func reset(retainCache: Swift.Bool = false) throws
+  public func add(_ liveUpdate: IonicLiveUpdates.LiveUpdate) throws
+  public func addLiveUpdateConfig(appId: Swift.String, channel: Swift.String = "production", syncImmediately: Swift.Bool = true) throws
+  public func lastSync(for appId: Swift.String) -> Foundation.Date?
+  public func lastSync() -> Foundation.Date?
+  public func cleanStaleVersions(for appId: Swift.String)
+  public func cleanVersions(for appId: Swift.String? = nil)
+  @discardableResult
+  public func extractUpdate(appId: Swift.String, snapshotId: Swift.String) throws -> Foundation.URL
+  public func getApps() -> [Swift.String : IonicLiveUpdates.LiveUpdate]
+  public func latestAppDirectory(for appId: Swift.String) throws -> Foundation.URL?
+  public func getAppSnapshots(for appId: Swift.String) -> [IonicLiveUpdates.Snapshot]
+  @discardableResult
+  public func getLiveUpdatesDirectory(for appId: Swift.String) throws -> Foundation.URL
+  public func sync(appId: Swift.String, isParallel: Swift.Bool = true, appComplete: @escaping IonicLiveUpdates.UpdateAppComplete = { _ in })
+  public func sync(appIds: [Swift.String], isParallel: Swift.Bool = true, syncComplete: @escaping IonicLiveUpdates.UpdateSyncComplete = { }, appComplete: @escaping IonicLiveUpdates.UpdateAppComplete = { _ in })
+  public func sync(isParallel: Swift.Bool = true, syncComplete: @escaping IonicLiveUpdates.UpdateSyncComplete = { }, appComplete: @escaping IonicLiveUpdates.UpdateAppComplete = { _ in })
+  public func cancelSync(for appId: Swift.String)
+  public func checkForUpdate(appId: Swift.String, callback: @escaping (Swift.Result<IonicLiveUpdates.SuccessResponse, IonicLiveUpdates.LiveUpdateManager.Error>) -> Swift.Void = { _ in })
+  public func downloadUpdate(appId: Swift.String, snapshotId: Swift.String, callback: @escaping (Swift.Result<Foundation.URL, IonicLiveUpdates.LiveUpdateManager.Error>) -> Swift.Void = { _ in })
+  @objc deinit
+}
+extension Swift.Optional : Swift.Comparable where Wrapped : Swift.Comparable {
+  public static func < (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
+}
+public struct IntegrityViolation : Swift.Hashable {
+  public var href: Swift.String
+  public var reason: IonicLiveUpdates.IntegrityViolation.Reason
+  public enum Reason : Swift.Hashable {
+    case fileNotFound
+    case invalidSha(expectedSha: Swift.String, actualSha: Swift.String)
+    case fileNotInManifest
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: IonicLiveUpdates.IntegrityViolation.Reason, b: IonicLiveUpdates.IntegrityViolation.Reason) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: IonicLiveUpdates.IntegrityViolation, b: IonicLiveUpdates.IntegrityViolation) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @available(iOS 13.0, *)
+public class SecureLiveUpdateManager : IonicLiveUpdates.LiveUpdateManager {
+  convenience public init(named name: Swift.String, publicKeyUrl: Foundation.URL, maxVersions: Swift.Int = 3)
+  convenience public init(named name: Swift.String, publicKey: Swift.String, maxVersions: Swift.Int = 3)
+  @objc deinit
+}
+public enum SecureUpdateFailureReason {
+  case missingManifest
+  case invalidManifest
+  case signatureValidationError
+  case integrityValidationError([IonicLiveUpdates.IntegrityViolation])
+}
+extension IonicLiveUpdates.LiveUpdateManager.Error.FailStep : Swift.Equatable {}
+extension IonicLiveUpdates.LiveUpdateManager.Error.FailStep : Swift.Hashable {}
+extension IonicLiveUpdates.LiveUpdateManager.Error.FailStep : Swift.RawRepresentable {}

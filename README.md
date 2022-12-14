@@ -10,7 +10,7 @@ portals-playground-native/
 │  ├─ kotlin/
 │  ├─ java/
 ├─ ios/
-│  ├─ ui-kit/
+│  ├─ uikit/
 │  ├─ swift-ui/
 ├─ web/
 │  ├─ ionic-angular/

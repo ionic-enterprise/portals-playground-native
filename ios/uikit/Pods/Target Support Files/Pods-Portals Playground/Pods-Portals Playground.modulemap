@@ -1,0 +1,6 @@
+framework module Pods_Portals_Playground {
+  umbrella header "Pods-Portals Playground-umbrella.h"
+
+  export *
+  module * { export * }
+}
