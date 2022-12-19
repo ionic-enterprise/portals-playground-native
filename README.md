@@ -11,7 +11,7 @@ portals-playground-native/
 │  ├─ java/
 ├─ ios/
 │  ├─ uikit/
-│  ├─ swift-ui/
+│  ├─ swiftui/
 ├─ web/
 │  ├─ ionic-angular/
 │  ├─ ionic-react/
