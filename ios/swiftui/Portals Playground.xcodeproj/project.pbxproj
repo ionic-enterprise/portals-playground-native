@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		0755073C2950C4AD004BE23B /* PlaygroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755073B2950C4AD004BE23B /* PlaygroundApp.swift */; };
-		0755073E2950C4AD004BE23B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755073D2950C4AD004BE23B /* ContentView.swift */; };
+		0755073E2950C4AD004BE23B /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755073D2950C4AD004BE23B /* EntryView.swift */; };
 		075507402950C4AE004BE23B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0755073F2950C4AE004BE23B /* Assets.xcassets */; };
 		075507432950C4AE004BE23B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075507422950C4AE004BE23B /* Preview Assets.xcassets */; };
+		0755074E2950D16B004BE23B /* PortalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755074D2950D16B004BE23B /* PortalsView.swift */; };
 		5C7CDEAA1FEBBD6F3FFC50F4 /* Pods_Portals_Playground.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828865A64E0D53791EA40E96 /* Pods_Portals_Playground.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		075507382950C4AD004BE23B /* Portals Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Portals Playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0755073B2950C4AD004BE23B /* PlaygroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundApp.swift; sourceTree = "<group>"; };
-		0755073D2950C4AD004BE23B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0755073D2950C4AD004BE23B /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		0755073F2950C4AE004BE23B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		075507422950C4AE004BE23B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		075507492950C6E3004BE23B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0755074A2950C885004BE23B /* Portals-Playground-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Portals-Playground-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0755074D2950D16B004BE23B /* PortalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalsView.swift; sourceTree = "<group>"; };
 		3E7A873E123C0A3C931BEEB9 /* Pods-Portals Playground.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Portals Playground.debug.xcconfig"; path = "Target Support Files/Pods-Portals Playground/Pods-Portals Playground.debug.xcconfig"; sourceTree = "<group>"; };
 		828865A64E0D53791EA40E96 /* Pods_Portals_Playground.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Portals_Playground.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEE9BD9A130FC9861427D90 /* Pods-Portals Playground.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Portals Playground.release.xcconfig"; path = "Target Support Files/Pods-Portals Playground/Pods-Portals Playground.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,9 +70,9 @@
 		0755073A2950C4AD004BE23B /* Portals Playground */ = {
 			isa = PBXGroup;
 			children = (
+				0755074C2950CA4B004BE23B /* Views */,
 				0755074A2950C885004BE23B /* Portals-Playground-Info.plist */,
 				0755073B2950C4AD004BE23B /* PlaygroundApp.swift */,
-				0755073D2950C4AD004BE23B /* ContentView.swift */,
 				0755073F2950C4AE004BE23B /* Assets.xcassets */,
 				075507412950C4AE004BE23B /* Preview Content */,
 				075507492950C6E3004BE23B /* Config.xcconfig */,
@@ -84,6 +86,15 @@
 				075507422950C4AE004BE23B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0755074C2950CA4B004BE23B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0755073D2950C4AD004BE23B /* EntryView.swift */,
+				0755074D2950D16B004BE23B /* PortalsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FBBA0EF1A1DD9BCC5A5DABFC /* Pods */ = {
@@ -228,7 +239,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0755073E2950C4AD004BE23B /* ContentView.swift in Sources */,
+				0755074E2950D16B004BE23B /* PortalsView.swift in Sources */,
+				0755073E2950C4AD004BE23B /* EntryView.swift in Sources */,
 				0755073C2950C4AD004BE23B /* PlaygroundApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

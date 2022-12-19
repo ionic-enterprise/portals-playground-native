@@ -18,7 +18,9 @@ struct PlaygroundApp: App {
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      NavigationView {
+        EntryView()
+      }
     }
   }
 }
