@@ -65,26 +65,54 @@ APP_NAME="ionic-angular/www"
 # APP_NAME = "ionic-vue/dist"
 ```
 
----
+## Android
 
-The intention behind this repository is to provide a starting point to play around with Ionic Portals for iOS and Android.
-
-Ultimately, this project will look like this:
+This repository contains starter Android applications using Java and Kotlin:
 
 ```bash
 portals-playground-native/
 ├─ android/
-│  ├─ kotlin/
 │  ├─ java/
-├─ ios/
-│  ├─ uikit/
-│  ├─ swiftui/
-├─ web/
-│  ├─ ionic-angular/
-│  ├─ ionic-react/
-│  ├─ ionic-vue/
+│  ├─ kotlin/
 ```
 
-This allows playgrounders to mix-and-match starter projects to choose their own tech stack.
+### Building
 
-Steps like copying over resources and where to add Portals keys will need to be added in addition to general instructions on how to use this repo.
+You must first create a configuration file named `secrets.xml` within the appropriate directory, either:
+
+- `android/java/app/src/main/res/values`
+- `android/kotlin/app/src/main/res/values`
+
+Populate the file with the following:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="portals_api_key">Your key here</string>
+</resources>
+```
+
+### Running
+
+Before running the application, ensure that the web application to display through the Portal has been built using `npm`. This repository comes with three starter web applications that can be built with the following commands, run from the root of the repository:
+
+```bash
+npm run build -w ionic-angular
+npm run build -w ionic-react
+npm run build -w ionic-vue
+```
+
+There is a pre-build gradle task that copies the built web application assets from their location in the repository into the Android application. Both Android applications contain the same script, and can be found in the appropriate location, either:
+
+- `android/java/app/build.gradle`
+- `android/kotlin/app/build.gradle`
+
+The task is named `CopyWebAssets`. By default, the function will attempt to copy the build output from the `ionic-angular` project. This can be modified as desired, with options for `ionic-react` and `ionic-vue` available, but commented out:
+
+```groovy
+// Set to the web package you want to bundle.
+// This must point to the distribution folder (e.g, 'www' or 'build')
+def appName = 'ionic-angular/www'
+// def appName = 'ionic-react/build'
+// def appName = 'ionic-vue/dist'
+```
