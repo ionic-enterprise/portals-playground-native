@@ -6,6 +6,17 @@ The purpose of this repository is to allow developers to mix-and-match the provi
 
 ## Repository Breakdown
 
+This repository contains starter applications for iOS, Android, and web.
+
+iOS and Android applications contain two screens:
+
+- An "entry" or "main" screen containing a button that navigates to
+- A child screen containing a native header and a Portal sized to contain the remainder of the viewport
+
+Ionic Portals is integrated into these applications. See platform specific sections below for additional details.
+
+There are three Ionic Framework starters contained in this repository, one for Ionic Angular, Ionic React, and Ionic Vue. The web applications were created using the "blank" starter template and contain a single screen with the header component removed.
+
 ## iOS
 
 This repository contains starter iOS applications using UIKit + Storyboards and Swift UI:
@@ -115,4 +126,38 @@ The task is named `CopyWebAssets`. By default, the function will attempt to copy
 def appName = 'ionic-angular/www'
 // def appName = 'ionic-react/build'
 // def appName = 'ionic-vue/dist'
+```
+
+## Web
+
+This repository contains starter Ionic Framework applications using the "blank" starter template:
+
+```bash
+portals-playground-native/
+├─ web/
+│  ├─ ionic-angular/
+│  ├─ ionic-react/
+│  ├─ ionic-vue/
+```
+
+### Serving
+
+You can serve any of the web applications under the `web` directory using npm workspace commands:
+
+```bash
+# Use one of the following to start the appropriate web app
+npm run start -w ionic-angular
+npm run start -w ionic-react
+npm run serve -w ionic-vue
+```
+
+### Building
+
+You can build any of the web applications under the `web` directory using npm workspace commands:
+
+```bash
+# Use one of the following to build the appropriate web app
+npm run build -w ionic-angular
+npm run build -w ionic-react
+npm run build -w ionic-vue
 ```
